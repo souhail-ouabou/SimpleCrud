@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaPlusCircle } from 'react-icons/fa'
 import { listAllArticles, listMyProjects } from '../redux/actions/articleAction'
+import Search from './Search'
 const Home = () => {
     const [first, setfirst] = useState(false)
 
@@ -27,16 +28,18 @@ const Home = () => {
         error: errorArticleDelete,
         success: SuccessArticleDelete,
     } = articleDelete
+    const keyword = window.location.pathname.split('/')[2]
     useEffect(() => {
         if (isLogged || SuccessArticleDelete) {
-            dispatch(listAllArticles(''))
+            dispatch(listAllArticles(keyword))
         }
-    }, [dispatch, SuccessArticleDelete, isLogged])
+    }, [dispatch, SuccessArticleDelete, isLogged, keyword])
 
     return (
         <>
+            <Search />
             {isLogged && (
-                <div className="flex mt-12 items-center justify-center h-28">
+                <div className="flex items-center justify-center h-28">
                     <Link to="add">
                         <button
                             className="flex items-center px-6 py-3 text-purple-100 bg-purple-600 rounded-md font-medium"

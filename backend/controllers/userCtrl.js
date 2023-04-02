@@ -141,7 +141,7 @@ const userCtrl = {
         try {
             console.log(req.user.id)
             const user = await Users.findById(req.user.id).select('-password')
-            console.log('finded user', user)
+            //    console.log('finded user', user)
             res.json(user)
         } catch (err) {
             return res.status(500).json({ msg: err.message })
@@ -193,28 +193,6 @@ const userCtrl = {
             res.json({ msg: 'Deleted Success!' })
         } catch (err) {
             return res.status(500).json({ msg: err.message })
-        }
-    },
-    updateUserProfile: async (req, res) => {
-        try {
-            const { name, avatar, password } = req.body
-            console.log('req body user ', req.body)
-            const user = await Users.findById(req.user.id)
-            console.log('finded user', user)
-
-            if (user) {
-                user.name = name || user.name
-                user.avatar = avatar || user.avatar
-                if (password) {
-                    const passwordHash = await bcrypt.hash(password, 12)
-                    user.password = passwordHash || user.password
-                }
-            }
-            const updatedUser = await user.save()
-            res.json({ msg: 'Update User Success!' })
-            console.log('Update of user info success')
-        } catch (error) {
-            return res.status(500).json({ msg: error.message })
         }
     },
 }

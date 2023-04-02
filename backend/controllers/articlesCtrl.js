@@ -27,7 +27,7 @@ const articlesCtrl = {
                 description: description,
             })
             const addArticle = await article.save()
-            console.log('addArticle', addArticle)
+
             res.json({ msg: 'addArticle Success!' })
         } catch (err) {
             console.log('-----------Add prjt error-------------', err)
@@ -79,7 +79,7 @@ const articlesCtrl = {
         try {
             const keyword = req.query.keyword
                 ? {
-                      name: {
+                      title: {
                           $regex: req.query.keyword,
                           $options: 'i',
                       },
@@ -95,7 +95,7 @@ const articlesCtrl = {
         }
     },
     deleteArticle: async (req, res) => {
-        console.log('id article delete' + req.params.id)
+        //   console.log('id article delete' + req.params.id)
         const article = await Articles.findById(req.params.id)
         if (article) {
             await article.deleteOne()
