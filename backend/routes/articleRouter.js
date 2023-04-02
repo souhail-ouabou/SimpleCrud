@@ -9,7 +9,7 @@ router.post('/addarticle', auth, articleCtrl.addArticle)
 // router.get('/myprojects', auth, projetCtrl.getMyprojects)
 // //login as a client -> refresh_token -> getProjectdetails
 router.get('/details/:id', auth, articleCtrl.getArticledetails)
-// router.put('/updateproject/:id', projetCtrl.updateProject)
+router.put('/updatearticle/:id', articleCtrl.updateArticle)
 // router.put('/updatetasks/:id', projetCtrl.updateTasksClient)
 // router.put('/updatespecprj/:id', projetCtrl.updateSpecProject)
 // router.put('/updateprjcolors/:id', projetCtrl.updateColorsProject)

@@ -15,6 +15,7 @@ import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import Home from './components/Home'
 import FormArticle from './components/FormArticle'
+import EditArticle from './components/EditArticle'
 
 function App() {
     const getUserReducer = useSelector((state) => state.getUserReducer)
@@ -34,7 +35,7 @@ function App() {
 
     useEffect(() => {
         if (token) {
-            dispatch(dispatchLogin()); //WE GOT  logged change to false so we transfer it to true
+            dispatch(dispatchLogin()) //WE GOT  logged change to false so we transfer it to true
             //Get user information cuz after get token useeffecr re compile and get error mn dispatchLogin
 
             dispatch(dispatchGetUser(token))
@@ -48,10 +49,8 @@ function App() {
                 <Routes>
                     <Route path="/*" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route
-                        path="/add"
-                        element={<FormArticle />}
-                    />
+                    <Route path="/add" element={<FormArticle />} />
+                    <Route path="/edit/:id" element={<EditArticle />} />
                 </Routes>
             </BrowserRouter>
         </>

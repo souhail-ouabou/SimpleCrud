@@ -45,34 +45,33 @@ const articlesCtrl = {
             return res.status(500).json({ msg: error.message })
         }
     },
-    updateProject: async (req, res) => {
+    updateArticle: async (req, res) => {
         try {
-            let sum = 0
-            const { startDate, endDate } = req.body[0]
+            const {
+                title,
+                price,
+                type,
+                surface,
+                city,
+                numberOfRooms,
+                description,
+            } = req.body
 
-            // console.log('--------------req booody 1-------------', req.body)
-
-            let specification = req.body.filter((v, k) => k !== 0)
-            // console.log('---------specification ------', specification)
-
-            const projet = await Projets.findById(req.params.id)
-            const sub = projet.specification.map((s) => s.progresState)
-            for (let i = 0; i < sub.length; i++) {
-                sum += sub[i]
-            }
-            let total = Math.round(sum / sub.length)
-
-            if (projet) {
-                projet.createdAt = startDate || projet.createdAt
-                projet.finishedAt = endDate || projet.finishedAt
-                projet.specification = specification || projet.specification
-                projet.totalProgresState = total
-                const updatedProject = await projet.save()
-                console.log('updatedProject', updatedProject)
-                res.json({ msg: 'Update prj Success!' })
+            const article = await Articles.findById(req.params.id)
+            if (article) {
+                article.title = title
+                article.price = price
+                article.type = type
+                article.surface = surface
+                article.city = city
+                article.numberOfRooms = numberOfRooms
+                article.description = description
+                const updatedrticle = await article.save()
+                console.log('updatedrticle', updatedrticle)
+                res.json({ msg: 'Update Article Success!' })
             }
         } catch (err) {
-            console.log('-----------Update prj error-------------', err)
+            console.log('-----------Update article error-------------', err)
             return res.status(500).json({ msg: err.message })
         }
     },

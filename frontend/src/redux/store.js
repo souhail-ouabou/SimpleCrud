@@ -13,13 +13,11 @@ import {
 } from './reducers/userReducer'
 
 import {
-    ListMyProjectsReducer,
-    GetProjectDetailsReducer,
+    articleDetailsReducer,
     ArticleCreateReducer,
-    projectUpdateReducer,
+    updateArticleReducer,
     ListAllArticlesReducer,
     projectDeleteReducer,
-
 } from './reducers/articleReducer'
 import token from './reducers/tokenReducer'
 
@@ -30,8 +28,8 @@ const reducer = combineReducers({
     getUserReducer,
     ArticleCreateReducer,
 
-    GetProjectDetailsReducer,
-    projectUpdateReducer,
+    articleDetailsReducer,
+    updateArticleReducer,
 
     userDetailsReducer,
 

@@ -54,14 +54,9 @@ export const ArticleCreateReducer = (state = {}, action) => {
     }
 }
 
-export const GetProjectDetailsReducer = (
+export const articleDetailsReducer = (
     state = {
-        project: {
-            specification: [],
-            //    projectTasks:[],
-            features: [],
-            user: {},
-        },
+        article: {},
     },
     action
 ) => {
@@ -74,7 +69,7 @@ export const GetProjectDetailsReducer = (
         case PROJECT_DETAILS_SUCCESS:
             return {
                 loading: false,
-                project: action.payload,
+                article: action.payload,
                 success: true,
             }
         case PROJECT_DETAILS_FAIL:
@@ -83,13 +78,13 @@ export const GetProjectDetailsReducer = (
                 error: action.payload,
             }
         case PROJECT_DETAILS_RESET:
-            return { project: {} }
+            return {}
         default:
             return state
     }
 }
 
-export const projectUpdateReducer = (state = { project: {} }, action) => {
+export const updateArticleReducer = (state = { article: {} }, action) => {
     switch (action.type) {
         case PROJET_UPDATE_REQUEST:
             return { loading: true }
@@ -97,12 +92,12 @@ export const projectUpdateReducer = (state = { project: {} }, action) => {
             return {
                 loading: false,
                 success: true,
-                project: action.payload,
+                article: action.payload,
             }
         case PROJET_UPDATE_FAIL:
             return { loading: false, err: action.payload }
         case PROJET_UPDATE_RESET:
-            return { project: {}, success: false }
+            return {  success: false }
         default:
             return state
     }

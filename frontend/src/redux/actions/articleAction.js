@@ -100,23 +100,14 @@ export const Getarticletdetails = (id) => async (dispatch, getState) => {
         })
     }
 }
-export const UpdateProject = (project) => async (dispatch) => {
+export const UpdateArticle = (article) => async (dispatch) => {
     try {
         dispatch({ type: PROJET_UPDATE_REQUEST })
         const { data } = await axios.put(
-            `/projets/updateproject/${project[0]._id}`,
-            project
+            `/articles/updatearticle/${article._id}`,
+            article
         )
-        toast.dismiss()
-        toast.loading('Please wait...', {
-            position: toast.POSITION.TOP_CENTER,
-        })
-
         dispatch({ type: PROJET_UPDATE_SUCCESS, payload: data })
-        toast.dismiss()
-        toast.success('Succès Update !', {
-            position: toast.POSITION.TOP_CENTER,
-        })
     } catch (error) {
         dispatch({
             type: PROJET_UPDATE_FAIL,
@@ -330,6 +321,3 @@ export const DeleteArticle = (id) => async (dispatch, getState) => {
         })
     }
 }
-
-
-
