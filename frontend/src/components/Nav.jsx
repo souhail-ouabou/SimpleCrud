@@ -5,7 +5,6 @@ import { logout } from '../redux/actions/authAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 const Nav = () => {
-    let navigate = useNavigate()
     const dispatch = useDispatch()
     const getUserReducer = useSelector((state) => state.getUserReducer)
     const { loading, user, isLogged } = getUserReducer

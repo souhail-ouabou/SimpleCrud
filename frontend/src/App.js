@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify'
 import Home from './components/Home'
 import FormArticle from './components/FormArticle'
 import EditArticle from './components/EditArticle'
+import ArticleDetails from './components/ArticleDetails'
 
 function App() {
     const getUserReducer = useSelector((state) => state.getUserReducer)
@@ -31,25 +32,22 @@ function App() {
         }
     }, [auth.isLogged, dispatch])
 
-    // when refresh the token exsit but the logged change to false so we logged out so that's we do that
-
     useEffect(() => {
         if (token) {
-            dispatch(dispatchLogin()) //WE GOT  logged change to false so we transfer it to true
-            //Get user information cuz after get token useeffecr re compile and get error mn dispatchLogin
+            dispatch(dispatchLogin())
 
             dispatch(dispatchGetUser(token))
         }
     }, [token, dispatch])
     return (
         <>
-            <ToastContainer />
             <BrowserRouter>
                 <Nav />
                 <Routes>
                     <Route path="/*" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/add" element={<FormArticle />} />
+                    <Route path="/details/:id" element={<ArticleDetails />} />
                     <Route path="/edit/:id" element={<EditArticle />} />
                 </Routes>
             </BrowserRouter>

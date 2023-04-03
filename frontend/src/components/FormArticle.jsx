@@ -1,8 +1,7 @@
-import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
+import { Button, Label, TextInput, Textarea } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { CreateArticle, dispatchGetUser } from '../redux/actions/articleAction'
-import { isEmpty, isEmail } from '../utils/validation/Validation'
+import { useNavigate } from 'react-router-dom'
+import { CreateArticle } from '../redux/actions/articleAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { PROJET_CREATE_RESET } from '../redux/actions/constants/articleConstants'
 
@@ -17,18 +16,6 @@ const FormArticle = () => {
         success: '',
     }
     const [creds, setCreds] = useState(initialState)
-    const {
-        title,
-        image,
-        price,
-        type,
-        surface,
-        city,
-        numberOfRooms,
-        description,
-        err,
-        success,
-    } = creds
 
     const auth = useSelector((state) => state.auth)
     const { error, userInfo, isLogged } = auth
@@ -43,13 +30,6 @@ const FormArticle = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (isEmpty(title) | isEmpty(price))
-            return setCreds({
-                ...creds,
-                err: 'Please fill in all fields',
-                success: '',
-            })
-
         dispatch(CreateArticle(creds))
     }
     const ArticleCreateReducer = useSelector(
@@ -146,7 +126,7 @@ const FormArticle = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="description" value="Description" />
                     </div>
-                    <TextInput
+                    <Textarea
                         id="description"
                         onChange={handleChange}
                         name="description"

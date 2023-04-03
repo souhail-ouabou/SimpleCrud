@@ -79,7 +79,7 @@ const articlesCtrl = {
         try {
             const keyword = req.query.keyword
                 ? {
-                      title: {
+                      city: {
                           $regex: req.query.keyword,
                           $options: 'i',
                       },

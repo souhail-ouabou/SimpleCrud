@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { FaSearch } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+
 import { useNavigate } from 'react-router-dom'
 const Search = () => {
     let navigate = useNavigate()
-    let dispatch = useDispatch()
+
     const [keyword, setkeyword] = useState('')
     const Handlesearch = (e) => {
         console.log('clickes')

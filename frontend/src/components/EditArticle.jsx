@@ -1,15 +1,13 @@
-import { Button, Checkbox, Label, TextInput } from 'flowbite-react'
+import { Button, Label, TextInput, Textarea } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
-    CreateArticle,
     Getarticletdetails,
     UpdateArticle,
 } from '../redux/actions/articleAction'
-import { isEmpty, isEmail } from '../utils/validation/Validation'
-import { PROJET_CREATE_RESET } from '../redux/actions/constants/articleConstants'
+
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ACTIONS, {
     PROJET_UPDATE_RESET,
     PROJECT_DETAILS_RESET,
@@ -35,7 +33,7 @@ const EditArticle = () => {
     const [data, setData] = useState([])
     const { title, price, type, surface, numberOfRooms, city, description } =
         data
-    const token = useSelector((state) => state.token)
+
     const navigate = useNavigate()
 
     const handleChange = (e) => {
@@ -153,7 +151,7 @@ const EditArticle = () => {
                     <div className="mb-2 block">
                         <Label htmlFor="description" value="Description" />
                     </div>
-                    <TextInput
+                    <Textarea
                         onChange={handleChange}
                         id="description"
                         name="description"
